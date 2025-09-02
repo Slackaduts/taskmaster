@@ -1,0 +1,230 @@
+MapDrive:
+  +Description: "Maps a network drive drive in the specified user scope."
+  +Aliases:
+    - MapDrive
+    - AddDrive
+  Drives:
+    +Description: "A mapping of the drive letter to the network path."
+    +Example: 'G: \\10.0.0.3\media\'
+    +Aliases:
+      - Drives
+      - Shares
+      - Mappings
+    +Data:
+  Elevated:
+    +Description: "Whether or not this drive should be mapped with admin privileges. This is rarely needed."
+    +Aliases:
+      - Elevated
+      - Elevate
+      - Privileged
+      - withAdmin
+      - Admin
+      - Administrator
+    +Data: false
+    +Example: 'Elevated: true'
+  +Example: |
+    Tasks:
+    - MapDrive:
+        Elevated: false
+        Drives:
+          Y: \\exampleserver.local\somedir\somesubdir
+          Z: \\10.0.0.3\media\
+  +Passthru:
+    +Aliases:
+      - Passthrough
+    Drives: MapDrive/Drives
+    Elevated: MapDrive/Elevated
+
+MapPrinter:
+  +Description: "Maps a printer in the specified user scope."
+  +Aliases:
+    - MapPrinter
+    - AddPrinter
+  Printers:
+    +Description: "Names of printers to map."
+    +Example: '- CompanyPrinter'
+    +Aliases:
+      - Printers
+    +Data:
+  Elevated:
+    +Description: "Whether or not this drive should be mapped with admin privileges. This is rarely needed."
+    +Aliases:
+      - Elevated
+      - Elevate
+      - Privileged
+      - withAdmin
+      - Admin
+      - Administrator
+    +Data: false
+    +Example: 'Elevated: true'
+  +Example: |
+    Tasks:
+    - MapPrinter:
+        Elevated: false
+        Printers:
+          - CompanyPrinter01
+          - CompanyPrinter02
+  +Passthru:
+    +Aliases:
+      - Passthrough
+    Printer: MapPrinter/Printers
+    Elevated: MapPrinter/Elevated
+
+ExecPowerShell:
+  +Description: "Executes a PowerShell script."
+  +Aliases:
+    - ExecPowerShell
+    - ExecScript
+    - RunScript
+    - ExecPS
+    - RunPS
+  Script:
+    +Description: "Content of script to run."
+    +Example: 'Copy-Item .\file.txt C:\Windows\Temp\Destination.txt'
+    +Aliases:
+      - PowerShell
+      - PS
+      - Code
+      - Program
+    +Data:
+  Elevated:
+    +Description: "Whether or not this script should be executed with admin privileges."
+    +Aliases:
+      - Elevated
+      - Elevate
+      - Privileged
+      - withAdmin
+      - Admin
+      - Administrator
+    +Data: false
+    +Example: 'Elevated: true'
+  +Example: |
+    Tasks:
+    - ExecPowerShell:
+        Elevated: false
+        Script:
+          - Powercfg /Change monitor-timeout-dc 60
+          - Powercfg /Change monitor-timeout-ac 120
+          - Powercfg /Change standby-timeout-dc 60
+          - Powercfg /Change standby-timeout-ac 0
+          - powercfg -setacvalueindex 381b4222-f694-41f0-9685-ff5bb260df2e 4f971e89-eebd-4455-a8de-9e59040e7347 5ca83367-6e45-459f-a27b-476b1d01c936 0
+  +Passthru:
+    +Aliases:
+      - Passthrough
+    Script: ExecPowerShell/Script
+    Elevated: ExecPowerShell/Elevated
+
+InstallExe:
+  +Description: "Executes a PowerShell script."
+  +Aliases:
+    - InstallExe
+    - InstallExecutable
+    - RunExe
+    - RunExecutable
+  Exe:
+    +Description: "Path of the executable to run."
+    +Example: '.\main.exe'
+    +Aliases:
+      - Exe
+      - Program
+      - Application
+    +Data:
+  Args:
+    +Description: "Arguments to run the executable with."
+    +Example: '-h'
+    +Aliases:
+      - Args
+      - Arguments
+      - InstallArgs
+      - InstallArguments
+    +Data:
+  Elevated:
+    +Description: "Whether or not this program should be executed with admin privileges."
+    +Aliases:
+      - Elevated
+      - Elevate
+      - Privileged
+      - withAdmin
+      - Admin
+      - Administrator
+    +Data: false
+    +Example: 'Elevated: true'
+  +Example: |
+    Tasks:
+    - InstallExe:
+        Elevated: false
+        Exe: main.exe
+        Args: /s
+  +Passthru:
+    +Aliases:
+      - Passthrough
+    Exe: InstallExe/Exe
+    Elevated: InstallExe/Elevated
+    Args: InstallExe/Args
+
+#____________________________________________________________
+HandleMSI:
+  +Description: "Executes a PowerShell script."
+  +Aliases:
+    - HandleMSI
+    - InstallMSI
+    - UninstallMSI
+    - RunMSI
+    - MSI
+  MSI:
+    +Description: "Path of the MSI installer."
+    +Example: '.\main.msi'
+    +Aliases:
+      - MSI
+      - Program
+      - Installer
+      - Uninstaller
+      - Package
+    +Data:
+  Uninstall:
+    +Description: "Whether the MSI should be uninstalled or not."
+    +Example: false
+    +Aliases:
+      - 
+  Silent:
+    +Description: "Whether the MSI should be run as silent or not."
+    +Aliases:
+      - Silent
+      - Quiet
+      - NoUI
+    +Data:
+      true
+  Args:
+    +Description: "Arguments to run the MSI with. Operates in addition to the **Uninstall** and **Silent** parameters."
+    +Example: '/qn /norestart'
+    +Aliases:
+      - Args
+      - Arguments
+      - InstallArgs
+      - InstallArguments
+      - UninstallArgs
+      - UninstallArguments
+    +Data:
+  Elevated:
+    +Description: "Whether or not this program should be executed with admin privileges."
+    +Aliases:
+      - Elevated
+      - Elevate
+      - Privileged
+      - withAdmin
+      - Admin
+      - Administrator
+    +Data: false
+    +Example: 'Elevated: true'
+  +Example: |
+    Tasks:
+    - InstallExe:
+        Elevated: false
+        Exe: main.exe
+        Args: /s
+  +Passthru:
+    +Aliases:
+      - Passthrough
+    Exe: InstallExe/Exe
+    Elevated: InstallExe/Elevated
+    Args: InstallExe/Args
