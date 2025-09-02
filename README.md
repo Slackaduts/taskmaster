@@ -1,4 +1,4 @@
-# Taskmaster
+# taskmaster
 A task automation framework to make writing maintainable, documented scripts easier for nontechnical people.
 
 ## Features
