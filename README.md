@@ -12,9 +12,9 @@ Type `.\taskmaster.exe --help` to get started.
 
 ## Immediate plans
 - Switch from tokio to smol
+- Include PowerShell code in the lib via include_str! or a custom macro
 - Concurrent tasks
 
 ## Future plans
-- Unix support (Bash)
 - Variable initialization
 - Conditionals outside of raw PowerShell
