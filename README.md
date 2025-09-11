@@ -11,7 +11,7 @@ A task automation framework to make writing maintainable, documented scripts eas
 Type `.\taskmaster.exe --help` to get started.
 
 ## Immediate plans
-- Switch from tokio to smol
+- Limit tokio features
 - Concurrent tasks
 
 ## Future plans
