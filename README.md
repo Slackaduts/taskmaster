@@ -11,6 +11,7 @@ A task automation framework to make writing maintainable, documented scripts eas
 Type `.\taskmaster.exe --help` to get started.
 
 ## Immediate plans
+- Segregate functionality (reporting, docgen, etc.) by feature flags
 - Limit tokio features
 - Concurrent tasks
 
