@@ -1,0 +1,9 @@
+target/*
+.logs/*
+# Added by cargo
+.tm_temp/*
+/target
+.\taskmaster.exe
+Cargo.lock
+.\*.md
+.vscode/*
